@@ -29,8 +29,9 @@ Gem::Specification.new do |s|
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.platform = Gem::Platform::RUBY
   s.add_runtime_dependency 'faraday'
-  s.add_runtime_dependency 'wrapi', ">= 0.2.0"
+  s.add_runtime_dependency 'wrapi', ">= 0.3.0"
   s.add_development_dependency 'dotenv'
   s.add_development_dependency 'minitest'
+  s.add_development_dependency 'simplecov'
   s.add_development_dependency 'rubocop'
 end

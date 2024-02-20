@@ -1,6 +1,9 @@
 # Hudu API
+[![Version](https://img.shields.io/gem/v/hudu.svg)](https://rubygems.org/gems/hudu)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e02c3f2cd2f13261597d/maintainability)](https://codeclimate.com/github/jancotanis/hudu/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e02c3f2cd2f13261597d/test_coverage)](https://codeclimate.com/github/jancotanis/hudu/test_coverage)
 
-This is a wrapper for the Hudu rest API. You can see the API endpoints here https://www.zabbix.com/documentation/current/en/manual/api/reference/
+This is a wrapper for the Hudu rest API. 
 
 Currently only the GET requests to get a list of hosts, host groups and problems are implemented.
 
@@ -75,19 +78,19 @@ end
 |:--|:--|
 |.api_info                         | /api/v1/api_info|
 |.activity_logs                    | /api/v1/activity_logs|
-|.companies, :company(id)          | /api/v1/companies/{id}|
-|.articles, :article(id)           | /api/v1/articles/{id}|
-|.asset_layouts, :asset_layout(id) | /api/v1/asset_layouts/{id}|
-|.assets, :asset(id)               | /api/v1/assets/{id}|
+|.companies, company(id)           | /api/v1/companies/{id}|
+|.articles, article(id)            | /api/v1/articles/{id}|
+|.asset_layouts, asset_layout(id)  | /api/v1/asset_layouts/{id}|
+|.assets, asset(id)                | /api/v1/assets/{id}|
 |.asset_passwords                  | /api/v1/asset_passwords/{id}|
-|.folders, :folder(id)             | /api/v1/folders/{id}|
-|.procedures, :procedure(id)       | /api/v1/procedures/{id}|
+|.folders, folder(id)              | /api/v1/folders/{id}|
+|.procedures, procedure(id)        | /api/v1/procedures/{id}|
 |.expirations                      | /api/v1/expirations|
-|.websites, :website(id)           | /api/v1/websites/{id}|
+|.websites, website(id)            | /api/v1/websites/{id}|
 |.relations                        | /api/v1/relations|
-|.company_articles(id)             |/api/v1/companies/{id}/articles|
-|.company_assets(id)               |/api/v1/companies/{id}/assets|
-|.company_asset(id,asset_id)       |/api/v1/companies/{id}/assets/{asset_id}|
+|.company_articles(id)             | /api/v1/companies/{id}/articles|
+|.company_assets(id)               | /api/v1/companies/{id}/assets|
+|.company_asset(id,asset_id)       | /api/v1/companies/{id}/assets/{asset_id}|
 
 
 ## Publishing
