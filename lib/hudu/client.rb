@@ -1,4 +1,5 @@
 require File.expand_path('api', __dir__)
+require File.expand_path('asset_helper', __dir__)
 
 module Hudu
   # Wrapper for the Hudu REST API
@@ -17,7 +18,7 @@ module Hudu
         end
         # record by id
         self.send(:define_method, singular_method) do |id, params = {}|
-          r = get(api_url("#{path}/" + id.to_s), params)
+          r = get(api_url("#{path}/#{id}"), params)
           r = hudu_data(r,singular_method)
         end
       else
@@ -26,6 +27,12 @@ module Hudu
           get(api_url(path), params)
         end
       end
+      # update
+      self.send(:define_method, "update_#{method}") do |id=nil,params = {}|
+        r = post(api_url("#{path}/#{id}"), params)
+        r = hudu_data(r,method)
+      end
+      
     end
 
   public
@@ -47,16 +54,20 @@ module Hudu
     api_endpoint :expirations
     api_endpoint :websites, :website
     api_endpoint :relations
+    api_endpoint :magic_dash
 
     def company_articles( company_id, params = {} )
-      articles({company_id: company_id}.merge(parems))
+      articles({company_id: company_id}.merge(params))
     end
-    
     def company_assets(id,params={})
       get_paged(api_url("companies/#{id}/assets"), params)
     end
     def company_asset(id,asset_id,params={})
       get(api_url("companies/#{id}/assets/#{asset_id}"), params)
+    end
+
+    def update_company_asset(asset)
+      put(api_url("companies/#{asset.company_id}/assets/#{asset.id}"), AssetHelper.construct_asset(asset))
     end
 
     # return api path
