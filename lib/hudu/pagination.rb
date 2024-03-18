@@ -31,12 +31,14 @@ module Hudu
 
       def self.data(body) 
         # assume hash {"resource":[...]}, get first key and return array data
-        k,v = body.first
-        if v.is_a?(Array) || v.is_a?(Hash)
-          v
-        else
-          body
+        result = body 
+        if body
+          k,v = body.first
+          if v.is_a?(Array) || v.is_a?(Hash)
+            result = v
+          end
         end
+        result
       end
     end
   end
