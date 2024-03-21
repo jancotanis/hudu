@@ -32,7 +32,7 @@ module Hudu
       def self.data(body) 
         # assume hash {"resource":[...]}, get first key and return array data
         result = body 
-        if body
+        if result && result.respond_to?(:first)
           k,v = body.first
           if v.is_a?(Array) || v.is_a?(Hash)
             result = v
