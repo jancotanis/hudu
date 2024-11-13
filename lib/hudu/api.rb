@@ -1,6 +1,7 @@
 require "wrapi"
 require File.expand_path('authentication', __dir__)
 require File.expand_path('configuration', __dir__)
+require File.expand_path('connection', __dir__)
 
 module Hudu
   # @private
@@ -27,6 +28,7 @@ module Hudu
 
     include Configuration
     include WrAPI::Connection
+    include Connection
     include WrAPI::Request
     include WrAPI::Authentication
     include Authentication
