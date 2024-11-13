@@ -15,7 +15,7 @@ module Hudu
       end
 
       def page_options
-        { page: @page }
+        { page: @page, page_size: @page_size }
       end
 
       def next_page!(body)
