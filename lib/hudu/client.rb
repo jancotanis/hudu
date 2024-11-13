@@ -29,6 +29,11 @@ module Hudu
       end
       # update
       self.send(:define_method, "update_#{method}") do |id=nil,params = {}|
+        r = put(api_url("#{path}/#{id}"), params)
+        r = hudu_data(r,method)
+      end
+      # create
+      self.send(:define_method, "create_#{method}") do |id=nil,params = {}|
         r = post(api_url("#{path}/#{id}"), params)
         r = hudu_data(r,method)
       end
@@ -54,7 +59,7 @@ module Hudu
     api_endpoint :expirations
     api_endpoint :websites, :website
     api_endpoint :relations
-    api_endpoint :magic_dash
+    api_endpoint :magic_dashes, :magic_dash, 'magic_dash'
 
     def company_articles( company_id, params = {} )
       articles({company_id: company_id}.merge(params))
@@ -62,12 +67,16 @@ module Hudu
     def company_assets(id,params={})
       get_paged(api_url("companies/#{id}/assets"), params)
     end
-    def company_asset(id,asset_id,params={})
-      get(api_url("companies/#{id}/assets/#{asset_id}"), params)
+    def company_asset(company_id,asset_id,params={})
+      get(api_url("companies/#{company_id}/assets/#{asset_id}"), params)
     end
 
     def update_company_asset(asset)
-      put(api_url("companies/#{asset.company_id}/assets/#{asset.id}"), AssetHelper.construct_asset(asset))
+      hudu_data(put(api_url("companies/#{asset.company_id}/assets/#{asset.id}"), AssetHelper.construct_asset(asset),false),:asset)
+    end
+
+    def create_company_asset(company_id,asset_layout, fields)
+      hudu_data(post(api_url("companies/#{company_id}/assets"), AssetHelper.create_asset(asset_layout.name,asset_layout.id,fields),false),:asset)
     end
 
     # return api path
@@ -77,8 +86,8 @@ module Hudu
 
     # hudu returns data as {resource:{}} or {resource:[]} 
     def hudu_data(result,resource)
-      if result.is_a?(Hash) && result[resource.to_s]
-        result[resource.to_s]
+      if result.is_a?(WrAPI::Request::Entity) && result.attributes[resource.to_s]
+        result.send resource.to_s
       else
         result
       end
