@@ -6,3 +6,6 @@
 ## [0.2.0] - 2024-03-13
 - update_company_asset added
 
+## [0.3.0] - 2024-03-13
+- throtling connection rate
+
