@@ -1,4 +1,6 @@
-require "wrapi"
+# frozen_string_literal: true
+
+require 'wrapi'
 require File.expand_path('authentication', __dir__)
 require File.expand_path('configuration', __dir__)
 require File.expand_path('connection', __dir__)
@@ -6,9 +8,8 @@ require File.expand_path('connection', __dir__)
 module Hudu
   # @private
   class API
-
     # @private
-    attr_accessor *Configuration::VALID_OPTIONS_KEYS
+    attr_accessor(*Configuration::VALID_OPTIONS_KEYS)
 
     # Creates a new API and copies settings from singleton
     def initialize(options = {})

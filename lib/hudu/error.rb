@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 module Hudu
-	
   # Generic error to be able to rescue all Hudu errors
   class HuduError < StandardError; end
 

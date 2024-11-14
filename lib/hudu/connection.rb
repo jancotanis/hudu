@@ -1,11 +1,9 @@
+# frozen_string_literal: true
+
 require File.expand_path('rate_throttle_middleware', __dir__)
 
 module Hudu
-  # Create connection including authorization parameters with default Accept format and User-Agent
-  # By default
-  # - Bearer authorization is access_token is not nil override with @setup_authorization
-  # - Headers setup for client-id and client-secret when client_id and client_secret are not nil @setup_headers
-  # @private
+  # Create connection including and keep it persistent so we add the rate throtling middleware only once
   module Connection
     private
 

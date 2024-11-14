@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'wrapi'
 require File.expand_path('version', __dir__)
 require File.expand_path('pagination', __dir__)
@@ -11,11 +13,11 @@ module Hudu
     VALID_OPTIONS_KEYS = (WrAPI::Configuration::VALID_OPTIONS_KEYS + [:api_key]).freeze
 
     # @private
-    attr_accessor *VALID_OPTIONS_KEYS
+    attr_accessor(*VALID_OPTIONS_KEYS)
 
-    DEFAULT_UA         = "Ruby Hudu API wrapper #{Hudu::VERSION}".freeze
+    DEFAULT_UA         = "Ruby Hudu API wrapper #{Hudu::VERSION}"
     DEFAULT_PAGINATION = RequestPagination::PagingInfoPager
-    DEFAULT_PAGE_SIZE  = 25
+    DEFAULT_PAGE_SIZE  = 100
 
     # When this module is extended, set all configuration options to their default values
     def self.extended(base)
@@ -40,4 +42,3 @@ module Hudu
     end
   end
 end
-
