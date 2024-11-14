@@ -9,3 +9,5 @@
 ## [0.3.0] - 2024-03-13
 - throtling connection rate
 
+## [0.3.1] - 2024-03-13
+- rubocop fixes
