@@ -4,10 +4,10 @@ require File.expand_path('api', __dir__)
 require File.expand_path('asset_helper', __dir__)
 
 module Hudu
-  # The Client class serves as a wrapper for the Hudu REST API, providing methods to interact 
+  # The Client class serves as a wrapper for the Hudu REST API, providing methods to interact
   # with various Hudu resources.
   #
-  # This class dynamically defines methods to fetch, create, update, and manipulate Hudu resources 
+  # This class dynamically defines methods to fetch, create, update, and manipulate Hudu resources
   # such as companies, articles, assets, and more.
   #
   # @example Basic Usage
@@ -16,7 +16,6 @@ module Hudu
   #   client.update_company(1, { name: "Updated Company" }) # Update a company
   #   client.create_company({ name: "New Company" }) # Create a new company
   class Client < API
-
     # Dynamically defines methods for interacting with Hudu API resources.
     #
     # Depending on the arguments, this will define methods to:
@@ -68,7 +67,6 @@ module Hudu
       end
     end
 
-
     # Define API endpoints for various resources
     api_endpoint :api_info
     api_endpoint :activity_logs
@@ -117,7 +115,10 @@ module Hudu
     # @param asset [Object] The asset object to update.
     # @return [Hash] The updated asset data.
     def update_company_asset(asset)
-      hudu_data(put(api_url("companies/#{asset.company_id}/assets/#{asset.id}"), AssetHelper.construct_asset(asset), false), :asset)
+      hudu_data(
+        put(api_url("companies/#{asset.company_id}/assets/#{asset.id}"), AssetHelper.construct_asset(asset), false),
+        :asset
+      )
     end
 
     # Creates a new asset for a company.
@@ -127,7 +128,13 @@ module Hudu
     # @param fields [Array<Hash>] The custom fields for the asset.
     # @return [Hash] The newly created asset data.
     def create_company_asset(company_id, asset_layout, fields)
-      hudu_data(post(api_url("companies/#{company_id}/assets"), AssetHelper.create_asset(asset_layout.name, asset_layout.id, fields), false), :asset)
+      hudu_data(
+        post(
+          api_url("companies/#{company_id}/assets"),
+          AssetHelper.create_asset(asset_layout.name, asset_layout.id, fields),
+          false
+        ), :asset
+      )
     end
 
     # Constructs the full API URL for a given path.
