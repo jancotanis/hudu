@@ -1,4 +1,5 @@
 # Hudu API
+
 [![Version](https://img.shields.io/gem/v/hudu.svg)](https://rubygems.org/gems/hudu)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e02c3f2cd2f13261597d/maintainability)](https://codeclimate.com/github/jancotanis/hudu/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e02c3f2cd2f13261597d/test_coverage)](https://codeclimate.com/github/jancotanis/hudu/test_coverage)
@@ -17,15 +18,20 @@ gem 'hudu'
 
 And then execute:
 
-    $ bundle install
+```console
+> bundle install
+```
 
 Or install it yourself as:
 
-    $ gem install hudu
+```console
+> gem install hudu
+```
 
 ## Usage
 
-Before you start making the requests to API provide the endpoint and api key using the configuration wrapping.
+Before you start making the requests to API provide the endpoint and
+api key using the configuration wrapping.
 
 ```ruby
 require 'hudu'
@@ -44,20 +50,23 @@ client.login
 ```
 
 ## Resources
+
 ### Authentication
-```
+
+```ruby
 # setup 
 #
 client.login
 ```
+
 |Resource|API endpoint|Description|
 |:--|:--|:--|
 |.login| none |uses api_info to check if credentials are correct. Raises Hudu:AuthenticationError incase this fails|
 
-
-
 ### Data resources
+
 Endpoint for data related requests 
+
 ```ruby
 
 # list all asset layouts/fields for a company
@@ -99,17 +108,20 @@ end
 2. Add release to [CHANGELOG.md](CHANGELOG.md)
 3. Commit.
 4. Test build.
-```
-> rake build
 
+```console
+> rake build
 ```
+
 5. Release
-```
+
+```console
 > rake release
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/jancotanis/hudu.
+Bug reports and pull requests are welcome on [GitHub](https://github.com/jancotanis/hudu).
 
 ## License
 

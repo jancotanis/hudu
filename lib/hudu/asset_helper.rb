@@ -11,9 +11,13 @@ module Hudu
     # @example
     #   asset = SomeAssetEntity.new(attributes: { id: 1, name: "Asset 1", company_id: 101 }, fields: [field1, field2])
     #   Hudu::AssetHelper.construct_asset(asset)
-    #   # => { asset: { id: 1, company_id: 101, asset_layout_id: nil, slug: nil, name: "Asset 1", custom_fields: [...] } }
+    #   # => { asset: 
+    #   #      { id: 1, company_id: 101, asset_layout_id: nil, slug: nil, name: "Asset 1", custom_fields: [...]
+    #   #      }
+    #   #    }
     def self.construct_asset(asset)
-      custom_asset = asset.attributes.slice(*%w[
+      custom_asset = asset.attributes.slice(
+        *%w[
           id company_id asset_layout_id slug name
           primary_serial primary_model primary_mail
           primary_manufacturer
@@ -47,7 +51,8 @@ module Hudu
     # Formats custom fields into a standardized hash structure.
     #
     # @param fields [Array<Object>] A collection of field objects, each expected to respond to `label` and `value`.
-    # @return [Array<Hash>] An array containing a single hash mapping field labels (downcased and underscored) to their values.
+    # @return [Array<Hash>] An array containing a single hash mapping field labels 
+    #                       (downcased and underscored) to their values.
     #
     # @example
     #   fields = [Field.new(label: "Warranty", value: "2025"), Field.new(label: "Location", value: "NYC")]
