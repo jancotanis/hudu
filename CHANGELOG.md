@@ -19,3 +19,7 @@
 ## [0.3.2] - 2025-03-20
 
 - update wrapi dependency
+
+## [0.3.3] - 2025-09-10
+
+- update HUDU API changes page size and asset layout structure
