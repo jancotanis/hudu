@@ -17,7 +17,7 @@ module Hudu
 
     DEFAULT_UA         = "Ruby Hudu API wrapper #{Hudu::VERSION}"
     DEFAULT_PAGINATION = RequestPagination::PagingInfoPager
-    DEFAULT_PAGE_SIZE  = 100
+    DEFAULT_PAGE_SIZE  = 25
 
     # When this module is extended, set all configuration options to their default values
     def self.extended(base)
