@@ -11,7 +11,7 @@ module Hudu
     # @example
     #   asset = SomeAssetEntity.new(attributes: { id: 1, name: "Asset 1", company_id: 101 }, fields: [field1, field2])
     #   Hudu::AssetHelper.construct_asset(asset)
-    #   # => { asset: 
+    #   # => { asset:
     #   #      { id: 1, company_id: 101, asset_layout_id: nil, slug: nil, name: "Asset 1", custom_fields: [...]
     #   #      }
     #   #    }
@@ -23,8 +23,15 @@ module Hudu
           primary_manufacturer
         ]
       )
+      custom_asset = asset.attributes.slice(
+        *%w[
+          asset_layout_id name
+          primary_serial primary_model primary_mail
+          primary_manufacturer
+        ]
+      )
       custom_asset['custom_fields'] = custom_fields(asset.fields)
-      { asset: custom_asset }
+      custom_asset
     end
 
     # Creates a new asset from the given layout and fields.
@@ -51,7 +58,7 @@ module Hudu
     # Formats custom fields into a standardized hash structure.
     #
     # @param fields [Array<Object>] A collection of field objects, each expected to respond to `label` and `value`.
-    # @return [Array<Hash>] An array containing a single hash mapping field labels 
+    # @return [Array<Hash>] An array containing a single hash mapping field labels
     #                       (downcased and underscored) to their values.
     #
     # @example
@@ -59,7 +66,7 @@ module Hudu
     #   Hudu::AssetHelper.custom_fields(fields)
     #   # => [{ "warranty" => "2025", "location" => "NYC" }]
     def self.custom_fields(fields)
-      [fields.map { |field| [field.label.downcase.gsub(' ', '_'), field.value] }.to_h]
+      fields.map { |field| { field.label.downcase.gsub(' ', '_') => field.value.to_s } }
     end
   end
 end
