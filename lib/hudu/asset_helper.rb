@@ -18,13 +18,6 @@ module Hudu
     def self.construct_asset(asset)
       custom_asset = asset.attributes.slice(
         *%w[
-          id company_id asset_layout_id slug name
-          primary_serial primary_model primary_mail
-          primary_manufacturer
-        ]
-      )
-      custom_asset = asset.attributes.slice(
-        *%w[
           asset_layout_id name
           primary_serial primary_model primary_mail
           primary_manufacturer
